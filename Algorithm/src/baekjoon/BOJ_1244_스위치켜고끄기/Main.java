@@ -1,4 +1,4 @@
-package baekjoon.BOJ_1244;
+package baekjoon.BOJ_1244_스위치켜고끄기;
 
 import java.util.Arrays;
 import java.util.Scanner;
