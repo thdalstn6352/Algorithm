@@ -1,4 +1,4 @@
-package jungol.Jo_1828;
+package jungol;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
