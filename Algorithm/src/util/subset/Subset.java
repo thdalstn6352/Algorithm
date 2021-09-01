@@ -10,8 +10,8 @@ public class Subset {
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
-		N = 3;
-		input = new int[] {1, 2, 4};
+		N = 4;
+		input = new int[] {1, 2, 3, 4};
 		isSelected = new boolean[N];
 		totalCnt = 0;
 				
