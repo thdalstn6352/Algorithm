@@ -12,58 +12,54 @@ public class Solution {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		StringBuilder sb = new StringBuilder();
-		Queue<String> queue = new LinkedList<>();
 		
 		String s = br.readLine();
 		int length = s.length();
 		int minLength = Integer.MAX_VALUE;
-		
-		for(int i = 1; i < length / 2; i++) {
+		if(length == 1) {
+			System.out.println(1);
+			return;
+		}
+		for(int i = 1; i <= length / 2; i++) {
+			StringBuilder sb = new StringBuilder();
+			int len = 0;
+			String target = "";
 			int flag = 0;
+			int count = 1;
 			int val = length / i;
-
+			
 			if(length % i != 0)
 				flag = 1;
-
-			int size = 0;
-
-			if(val % 2 == 1) {
-				size = val - 1;
-				flag = 1;
-			}
-			else{
-				size = val;
-			}
 			
-			int len = size * i - i;
+			int size = val * i;
 			
-			for(int c = 0; c < len; c += (i+i)) {
-				String msg1 = s.substring(c, c + i);
-				String msg2 = s.substring(c + i, c + (2 * i));
-				
-				if(!queue.isEmpty()) {
-					if(!queue.peek().equals(msg1)) {
-						String queSize = Integer.toString(queue.size());
-						sb.append(queSize).append(queue.poll());
-						queue.clear();
-					}
-				}
-				
-				if(msg1.equals(msg2)) {
-					queue.offer(msg1);
-					queue.offer(msg2);
+			for(len = 0; len <= size - i; len+=i) {
+				String msg = s.substring(len, len + i);
+				//System.out.println(msg);
+				if(target.equals(msg)) {
+					count++;
 				}
 				else {
-					sb.append(msg1);
+					if(count > 1) {
+						sb.append(count);
+					}
+					sb.append(target);
+					target = msg;
+					count = 1;
 				}
-				System.out.print(msg1 + " ");
-				System.out.println(msg2);
+				
+				if(len == size - i) {
+					if(count > 1) {
+						sb.append(count);
+					}
+					sb.append(target);
+				}
 			}
 			if(flag == 1) {
-				System.out.printf("나머지 : %s%n", s.substring(size * i));
+				sb.append(s.substring(len));
 			}
-			
+			minLength = Math.min(minLength, sb.toString().length());
 		}
+		System.out.println(minLength);
 	}
 }
