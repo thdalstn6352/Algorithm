@@ -6,7 +6,7 @@ public class PermutationWithBitMask {
 	static int N = 3, R = 2; 
 	static int[] numbers;
 	static int[] input;
-	static int flag;
+	//static int flag;
 	
 	public static void main(String[] args) {
 		input = new int[]{1,2,3};
