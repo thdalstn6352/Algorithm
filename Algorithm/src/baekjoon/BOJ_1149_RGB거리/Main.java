@@ -1,4 +1,4 @@
-package baekjoon.BOJ_1463;
+package baekjoon.BOJ_1149_RGB거리;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -12,26 +12,5 @@ public class Main {
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		StringBuilder sb = new StringBuilder();
 		
-		int N = Integer.parseInt(br.readLine());
-		int cnt = 0;
-		while(N != 1) {
-			if(N % 3 == 0) {
-				N /= 3;
-				cnt++;
-				continue;
-			}
-			else {
-				N -= 1;
-				cnt++;
-			}
-			
-			if(N % 2 == 0) {
-				N /= 2;
-				cnt++;
-			}
-		}
-		
-		System.out.println(cnt);
-	
 	}
 }
