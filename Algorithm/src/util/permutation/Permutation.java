@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Permutation {
 
-	static int N = 6, R = 4; 
+	static int N = 6, R = 3; 
 	static int[] numbers;
 	static int[] input;
 	static boolean[] isSelected;

@@ -11,7 +11,7 @@ public class Subset {
 
 		Scanner sc = new Scanner(System.in);
 		N = 4;
-		input = new int[] {1, 2, 3, 4};
+		input = new int[] {0, 1, 2, 3};
 		isSelected = new boolean[N];
 		totalCnt = 0;
 				

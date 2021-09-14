@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class NextPermutation {
 	public static void main(String[] args) {
 		
-		int[] input = new int[] {1, 2, 4};
+		int[] input = new int[] {1, 2, 3, 4};
 		
 		Arrays.sort(input); //가장 작은 순열 만들기(1,4,7)
 		

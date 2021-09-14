@@ -3,19 +3,25 @@ package util.combination;
 import java.util.Arrays;
 
 public class Combination {
-	static int N = 9,R = 2; 
+	static int N = 6,R = 3; 
 	static int[] input;
 	static int[] numbers;
+	static int count;
 	
 	public static void main(String[] args) {
 
-		input = new int[]{1,2,3,4,5,6,7,8,9};
+		input = new int[N];
+		for(int i = 0; i < N; i++) {
+			input[i] = i + 1;
+		}
 		numbers = new int[R];
 		combination(0,0);
+		System.out.println(count);
 	}
 		
 	private static void combination(int cnt,int start) {
 		if(cnt == R) {
+			count++;
 			System.out.println(Arrays.toString(numbers));
 			return;
 		}

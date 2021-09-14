@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -50,12 +51,18 @@ public class Main {
 		
 	}
 	private static void moveCmd() {
-		for(int i = 0; i < M; i++) {
+		for(int i = 0; i < fireballs.size(); i++) {
 			FireBall fireball = fireballs.get(i);
-			int nx = (fireball.r + N + (deltas[fireball.d][0] * fireball.s)) % N;
-			int ny = (fireball.c + N + (deltas[fireball.d][1] * fireball.s)) % N;
+			int nx = fireball.r + deltas[fireball.d][0] * (fireball.s % N);
+			int ny = fireball.c + deltas[fireball.d][1] * (fireball.s % N);
 			
-			map[fireball.r][fireball.c]--;
+			if(nx > 0) nx %= N;
+            if(ny > 0) ny %= N;
+            if(nx < 0) nx = (N - Math.abs(nx));
+            if(ny < 0) ny = (N - Math.abs(ny));
+			
+            map[fireball.r][fireball.c]--;
+			map[nx][ny]++;
 			fireballs.get(i).r = nx;
 			fireballs.get(i).c = ny;
 		}
@@ -67,9 +74,9 @@ public class Main {
 					int mSum = 0;
 					int sSum = 0;
 					int dFlag = 0;
-					
-					for(int i = 0; i < M; i++) {
-						map[r][c] = 4;
+					map[r][c] = 4;
+
+					for(int i = 0; i < fireballs.size(); i++) {
 						if(r == fireballs.get(i).r && c == fireballs.get(i).c) {
 							mSum += fireballs.get(i).m;
 							sSum += fireballs.get(i).s;
@@ -92,6 +99,7 @@ public class Main {
 								break;
 							}
 							fireballs.remove(i);
+							i--;
 						}
 					}
 					mSum /= 5;
@@ -99,12 +107,12 @@ public class Main {
 					
 					if(mSum > 0) {
 						if(dFlag == 3) {
-							for(int d = 0; d < 7; d += 2) {
+							for(int d = 1; d < 8; d += 2) {
 								fireballs.add(new FireBall(r, c, mSum, sSum, d));
 							}
 						}
 						else if(dFlag == 1 || dFlag == 2){
-							for(int d = 1; d < 8; d += 2) {
+							for(int d = 0; d < 7; d += 2) {
 								fireballs.add(new FireBall(r, c, mSum, sSum, d));
 							}
 						}
