@@ -1,4 +1,4 @@
-package util.zeroKnapped;
+package util.Knapsack;
 
 import java.util.Scanner;
 

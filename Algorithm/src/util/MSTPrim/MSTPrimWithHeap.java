@@ -1,4 +1,4 @@
-package sw_expert.SWEA_3124_최소스패닝트리;
+package util.MSTPrim;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
 
-public class Solution {
+public class MSTPrimWithHeap {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
@@ -90,3 +90,12 @@ class Edge implements Comparable<Edge> {
 	}
 	
 }
+
+
+/*
+1
+3 3
+1 2 1
+2 3 2
+1 3 3
+*/
