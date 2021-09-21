@@ -88,8 +88,8 @@ public class MSTKruskalTest {
 		for(Edge edge : edgeList) {
 			if(unionSet(edge.from, edge.to)) {
 				result += edge.weight;
-				if(++cnt == V - 1)
-					break;
+
+
 			}
 		}
 		

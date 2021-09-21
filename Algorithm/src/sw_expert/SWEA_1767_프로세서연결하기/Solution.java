@@ -5,13 +5,18 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Solution {
 	static int N;
 	static int[][] map;
 	static int[][] deltas = { {-1 , 0}, {1, 0}, {0, -1}, {0, 1} };
+	static List<Point> coreList;
+	static int minLength = Integer.MAX_VALUE;
+	static int maxCoreCnt;
+	
+	
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -23,65 +28,104 @@ public class Solution {
 		for(int tc = 1; tc <= T; tc++) {
 			N = Integer.parseInt(br.readLine());
 			map = new int[N][N];
+			coreList = new ArrayList<>();
 			
 			for(int r = 0; r < N; r++) {
 				String[] lines = br.readLine().split(" ");
 				for(int c = 0; c < N; c++) {
 					map[r][c] = Integer.parseInt(lines[c]);
-				}
-			}
-			
-			for(int r = 1; r < N - 1; r++) {
-				for(int c = 1; c < N - 1; c++) {
 					if(map[r][c] == 1) {
-						bfs(new Point(r, c));
+						if(!(r == 0 || r == N -1 || c == 0 || c == N - 1))
+							coreList.add(new Point(r, c));
+							
 					}
 				}
 			}
+			dfs(0, 0, 0);
+			sb.append("#").append(tc).append(" ").append(minLength).append("\n");
+			
+			minLength = Integer.MAX_VALUE;
+			maxCoreCnt = 0;
 		}
+		
+		bw.write(sb.toString());
+		bw.flush();
 		
 	}
 	
-	private static void bfs(Point point) {
-		Queue<Point> queue = new LinkedList<>();
-		boolean[][] visited = new boolean[N][N];
-		int min = Integer.MAX_VALUE;
+	private static void dfs(int idx, int coreCnt, int len) {
+		if(idx == coreList.size()) {
+			if(coreCnt > maxCoreCnt) {
+				minLength = len;
+				maxCoreCnt = coreCnt;
+			}
+			else if(coreCnt == maxCoreCnt) {
+				if(len < minLength)
+					minLength = len;
+			}
+			return;
+		}
 		
-		queue.add(point);
-		visited[point.r][point.c] = true;
-		
-		while(!queue.isEmpty()) {
-			Point p = queue.poll();
+		int x = coreList.get(idx).x;
+		int y = coreList.get(idx).y;
+
+		for(int d = 0; d < 4; d++) {
+			int nx = x;
+			int ny = y;
+			int cnt = 0;
 			
-			for(int d = 0; d < 4; d++) {
-				int nr = p.r + deltas[d][0];
-				int nc = p.c + deltas[d][1];
-				int len = 0;
+			while(true) {
+				nx += deltas[d][0];
+				ny += deltas[d][1];
 				
-				if(nr >= 1 && nr < N && nc >= 1 && nc < N && map[nr][nc] != 1) {
-					calcDist(new Point(nr, nc), d, len);
+				if(!isAvailable(nx, ny)) {
+					break;
 				}
+				
+				if(map[nx][ny] == 1) {
+					cnt = 0;
+					break;
+				}
+				cnt++;
+			}
+			if(cnt == 0)
+				dfs(idx+1, coreCnt, len);
+			else {
+				connectOrdisconnect(new Point(x, y), cnt, d, 1);
+				dfs(idx+1, coreCnt+1, len + cnt);
+				connectOrdisconnect(new Point(x, y), cnt, d, 0);
 			}
 		}
+		
 	}
 	
-	private static void calcDist(Point point, int d, int len) {
-		int nr = point.r + deltas[d][0];
-		int nc = point.c + deltas[d][1];
+	private static void connectOrdisconnect(Point point, int cnt, int dir, int val) {
+		int x = point.x;
+		int y = point.y;
 		
-		if(nr >= 1 && nr < N && nc >= 1 && nc < N && map[nr][nc] != 1) {
-			calcDist(new Point(nr, nc), d, len+1);
+		for(int i = 0; i < cnt; i++) {
+			x += deltas[dir][0];
+			y += deltas[dir][1];
+			
+			map[x][y] = val;
 		}
 	}
+	
+	private static boolean isAvailable(int x, int y) {
+		if(x >= 0 && x < N && y >= 0 && y < N)
+			return true;
+		return false;
+	}
+	
 }
 
 class Point {
-	int r;
-	int c;
+	int x;
+	int y;
 	
-	public Point(int r, int c) {
+	public Point(int x, int y) {
 		super();
-		this.r = r;
-		this.c = c;
+		this.x = x;
+		this.y = y;
 	}
 }
