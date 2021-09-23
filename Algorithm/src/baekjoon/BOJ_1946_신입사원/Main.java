@@ -33,7 +33,6 @@ public class Main {
 				rankMap.put(docRank, interRank);
 				rankByInterview.add(new Rank(docRank, interRank));
 			}
-			
 			while(!rankByInterview.isEmpty()) {
 				int firstKey = rankMap.keySet().stream().findFirst().get();
 				int curInterRank = rankMap.get(firstKey);

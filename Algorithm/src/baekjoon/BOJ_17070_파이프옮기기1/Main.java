@@ -16,8 +16,6 @@ public class Main {
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		StringBuilder sb = new StringBuilder();
 	
 		N = Integer.parseInt(br.readLine());
 		map = new int[N][N];
@@ -36,6 +34,7 @@ public class Main {
 	private static void dfs(Point start, Point end, int dir) {
 		if(end.x == N -1 && end.y == N - 1) {
 			cnt++;
+			return;
 		}
 		
 		for(int d = 0; d < 3; d++) {
