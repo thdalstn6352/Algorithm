@@ -25,5 +25,7 @@ public class Main {
 		}
 		
 		System.out.println(D[W]);
+		
+
 	}
 }

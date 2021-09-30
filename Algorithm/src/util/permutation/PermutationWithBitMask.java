@@ -3,13 +3,13 @@ package util.permutation;
 import java.util.Arrays;
 
 public class PermutationWithBitMask {
-	static int N = 3, R = 2; 
+	static int N = 10, R = 1; 
 	static int[] numbers;
 	static int[] input;
 	//static int flag;
 	
 	public static void main(String[] args) {
-		input = new int[]{1,2,3};
+		input = new int[]{0,1,2,3,4,5,6,7,8,9};
 		numbers = new int[R];
 	
 		permutation(0, 0);
