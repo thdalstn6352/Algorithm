@@ -16,8 +16,6 @@ public class Main {
 	static Area[] person;
 	static int min = Integer.MAX_VALUE;
 	
-	//static List<Integer> Alist;
-	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -72,11 +70,13 @@ public class Main {
 			if(!aList.contains(i))
 				bList.add(i);
 		}
+		
 		if(!isConnected(aList) || !isConnected(bList))
 			return;
 		
 		int aArea = 0;
 		int bArea = 0;
+		
 		for(int aPerson : aList) {
 			aArea += person[aPerson].person;
 		}

@@ -20,6 +20,7 @@ public class Main {
 		W = Integer.parseInt(HWXY[1]);
 		X = Integer.parseInt(HWXY[2]);
 		Y = Integer.parseInt(HWXY[3]);
+		
 		B = new int[H+X][W+Y];
 		A = new int[H][W];
 		
@@ -41,7 +42,7 @@ public class Main {
 			}
 			sb.append("\n");
 		}
-		
+
 		bw.write(sb.toString());
 		bw.flush();
 	}
