@@ -19,7 +19,7 @@ public class Subset {
 		System.out.println("경우의 수 : "+totalCnt);
 	}
 
-	private static void generateSubset(int cnt){ // cnt : 부분집합을 처리하기 위해 고려된 원소수 
+	private static void generateSubset(int cnt){
 
 		if(cnt == N) {
 			// 부분집합 완성
