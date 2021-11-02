@@ -56,12 +56,7 @@ public class Main {
 	
 	public static void moveFish() {
 		for(int i = 0; i < M; i++) {
-			int x = fishQueue.get(i).x;
-			int y = fishQueue.get(i).y;
-			int nextX = x;
-			int nextY = y;
 			
-			int dir = fishQueue.get(i).dir - 1;
 			
 			
 			for(int j = 0; j < 8; j++) {
