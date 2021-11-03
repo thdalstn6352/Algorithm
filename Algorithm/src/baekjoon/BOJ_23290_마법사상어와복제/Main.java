@@ -57,8 +57,6 @@ public class Main {
 	public static void moveFish() {
 		for(int i = 0; i < M; i++) {
 			
-			
-			
 			for(int j = 0; j < 8; j++) {
 				int nx = x + deltas[dir][0];
 				int ny = y + deltas[dir][1];
@@ -77,10 +75,7 @@ public class Main {
 			System.out.println(nfishQueue.get(i));
 		}
 	}
-	
-//	public static void moveShark(i) {
-//		
-//	}
+
 }
 
 
