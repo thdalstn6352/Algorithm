@@ -57,22 +57,6 @@ public class Main {
 	public static void moveFish() {
 		for(int i = 0; i < M; i++) {
 			
-			for(int j = 0; j < 8; j++) {
-				int nx = x + deltas[dir][0];
-				int ny = y + deltas[dir][1];
-				
-				if(nx >= 0 && nx < 4 && ny >= 0 && ny < 4 && map[nx][ny] != 1 && map[nx][ny] != 3) {
-					nextX = nx;
-					nextY = ny;
-					break;
-				}
-				dir--;
-				if(dir == -1) 
-					dir = 7; 
-			}
-			nfishQueue.add(new NextFish(nextX, nextY, dir));
-			map[nextX][nextY] = 2;
-			System.out.println(nfishQueue.get(i));
 		}
 	}
 
