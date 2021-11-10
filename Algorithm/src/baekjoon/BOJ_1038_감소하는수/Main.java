@@ -36,6 +36,8 @@ public class Main {
 			if (num % 10 > idx) {
 				calc((num * 10) + idx);
 			}
+			else
+				break;
 		}
 	}
 }
