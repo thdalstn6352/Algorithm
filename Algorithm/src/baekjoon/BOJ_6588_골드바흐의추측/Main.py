@@ -2,7 +2,7 @@ import math, sys
 input = sys.stdin.readline
 
 
-def isSosu(value):
+def sosu(value):
     for i in range(2, n):
         if array[i] and array[value - i]:
             return i, value - i
@@ -22,6 +22,6 @@ while True:
     num = int(input())
     if num == 0:
         break
-    x, y = isSosu(num)
+    x, y = sosu(num)
     print("%d = %d + %d" % (num, x, y))
 
