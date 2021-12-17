@@ -22,7 +22,7 @@ def binary_search(array, target, start, end):
 
 for i in target:
     result = binary_search(data, i, 0, n - 1)
-    if result == None:
+    if not result:
         print("no", end=" ")
     else:
         print("yes", end=" ")
