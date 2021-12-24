@@ -1,12 +1,12 @@
 n = int(input())
 
-array = list(map(int, input().split()))
+data = list(map(int, input().split()))
 
-data = [0] * 100
+result = [0] * n
 
-data[0] = array[0]
-data[1] = max(array[0], array[1])
+result[0] = data[0]
+result[1] = max(data[0], data[1])
 for i in range(2, n):
-    data[i] = max(data[i - 1], data[i - 2] + array[i])
+    result[i] = max(result[i - 1], result[i - 2] + data[i])
+print(result[n - 1])
 
-print(data[n - 1])
