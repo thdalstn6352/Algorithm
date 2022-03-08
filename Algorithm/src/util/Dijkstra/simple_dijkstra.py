@@ -1,35 +1,27 @@
 import sys
 
-input = sys.stdin.readline()
-
+input = sys.stdin.readline
 INF = int(1e9)
 
-# 노드 개수, 간선 개수
 n, m = map(int, input().split())
 
-# 시작 노드
-start = int(input())
-
-# 노드와 간선 정보
-graph = [[] for i in range(n + 1)]
-
-# 방문 체크
 visited = [False] * (n + 1)
-
-# 최단거리 리스트
 distance = [INF] * (n + 1)
 
+start = int(input())
+graph = [[] for _ in range(n + 1)]
+
 for _ in range(m):
-    a, b, c = map(int, input().split())
-    graph[a].append((b, c))
+    x, y, c = map(int, input().split())
+    graph[x].append((y, c))
 
 
 def get_smallest_node():
-    min_value = INF
+    min_length = INF
     index = 0
     for i in range(1, n + 1):
-        if distance[i] < min_value and not visited[i]:
-            min_value = distance[i]
+        if min_length > distance[i] and not visited[i]:
+            min_length = distance[i]
             index = i
     return index
 
@@ -38,16 +30,15 @@ def dijkstra(start):
     distance[start] = 0
     visited[start] = True
 
-    for j in graph[start]:
-        distance[j[0]] = j[1]
+    for node in graph[start]:
+        distance[node[0]] = node[1]
 
-    for i in range(n - 1):
-        now = get_smallest_node()
-        visited[now] = True
-
-        for j in graph[now]:
-            cost = distance[now] + j[1]
-            if cost < distance[j[0]]:
+    for _ in range(n - 1):
+        next_node = get_smallest_node()
+        visited[next_node] = True
+        for j in graph[next_node]:
+            cost = distance[next_node] + j[1]
+            if distance[j[0]] > cost:
                 distance[j[0]] = cost
 
 

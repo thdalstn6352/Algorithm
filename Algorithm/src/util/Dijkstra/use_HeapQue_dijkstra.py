@@ -22,7 +22,7 @@ def dijkstra(start):
     distance[start] = 0
 
     while q:
-        dist, now = heapq.heappop()
+        dist, now = heapq.heappop(q)
 
         if distance[now] < dist:
             continue
