@@ -1,23 +1,23 @@
+import sys
+input = sys.stdin.readline
+
 n, m = map(int, input().split())
-edges = []
+
 parents = [0] * (n + 1)
-result = []
-
-def make():
-    for i in range(1, n + 1):
-        parents[i] = i
+edges = []
+for i in range(n + 1):
+    parents[i] = i
 
 
-def find(a):
-    if parents[a] != a:
-        parents[a] = find(parents[a])
-    return parents[a]
+def find(x):
+    if parents[x] != x:
+        parents[x] = find(parents[x])
+    return parents[x]
 
 
 def union(a, b):
     a = find(a)
     b = find(b)
-
     if a < b:
         parents[b] = a
     else:
@@ -25,18 +25,19 @@ def union(a, b):
 
 
 for _ in range(m):
-    a, b, c = map(int, input().split())
-    edges.append((c, a, b))
-
+    a, b, cost = map(int, input().split())
+    edges.append((cost, a, b))
 
 edges.sort()
-make()
 
+result = 0
+max_dist = 0
 for edge in edges:
     cost, a, b = edge
     if find(a) == find(b):
         continue
     union(a, b)
-    result.append(cost)
+    max_dist = max(max_dist, cost)
+    result += cost
 
-print(sum(result) - max(result))
+print(result - max_dist)
