@@ -51,4 +51,5 @@ for r in range(N):
         visited[r][c] = False
         another(r, c)
 
+
 print(value)
