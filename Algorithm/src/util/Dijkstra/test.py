@@ -1,8 +1,7 @@
 import sys
 import heapq
-INF = int(1e9)
-
 input = sys.stdin.readline
+INF = int(1e9)
 
 n, m = map(int, input().split())
 start = int(input())
@@ -15,10 +14,10 @@ for _ in range(m):
     graph[s].append((e, v))
 
 
-def dijkstra(node):
+def dijkstra(start):
     heap = []
-    heapq.heappush(heap, (0, node))
-    distance[node] = 0
+    distance[start] = 0
+    heapq.heappush(heap, (0, start))
 
     while heap:
         value, now = heapq.heappop(heap)
@@ -29,10 +28,11 @@ def dijkstra(node):
         for data in graph[now]:
             cost = value + data[1]
 
-            if cost < distance[data[0]]:
+            if distance[data[0]] > cost:
                 distance[data[0]] = cost
                 heapq.heappush(heap, (cost, data[0]))
 
 
 dijkstra(start)
+
 print(distance)
