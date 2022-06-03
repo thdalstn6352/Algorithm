@@ -10,15 +10,15 @@ def make():
         parent[i] = i
 
 
-def find(a):
+def find(parent, a):
     if parent[a] != a:
         parent[a] = find(parent[a])
     return parent[a]
 
 
-def union(a, b):
-    a = find(a)
-    b = find(b)
+def union(parent, a, b):
+    a = find(parent, a)
+    b = find(parent, b)
 
     if a < b:
         parent[b] = a
@@ -36,7 +36,7 @@ make()
 for edge in edges:
     cost, a, b = edge
 
-    if find(a) == find(b):
+    if find(parent, a) == find(parent, b):
         continue
     union(a, b)
     result += cost
